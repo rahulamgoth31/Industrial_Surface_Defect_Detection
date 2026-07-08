@@ -6,7 +6,7 @@ Networks (CNNs) and Transfer Learning.
 
 ------------------------------------------------------------------------
 
-## 📌 Project Overview
+## Project Overview
 
 Manual inspection of industrial products is time-consuming, expensive,
 and prone to human error. This project automates the quality inspection
@@ -20,7 +20,7 @@ quality control.
 
 ------------------------------------------------------------------------
 
-## 🎯 Objectives
+## Objectives
 
 -   Automate industrial surface inspection
 -   Reduce human inspection errors
@@ -30,7 +30,7 @@ quality control.
 
 ------------------------------------------------------------------------
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 -   Python
 -   TensorFlow
@@ -43,7 +43,7 @@ quality control.
 
 ------------------------------------------------------------------------
 
-## 📂 Dataset
+## Dataset
 
 The project uses an Industrial Surface Defect Dataset containing images
 of various manufacturing defects.
@@ -64,7 +64,7 @@ Each folder contains images belonging to one defect category.
 
 ------------------------------------------------------------------------
 
-## 🔄 Data Preprocessing
+## Data Preprocessing
 
 The following preprocessing pipeline is applied before training:
 
@@ -81,7 +81,7 @@ The following preprocessing pipeline is applied before training:
 
 ------------------------------------------------------------------------
 
-## 🧠 Model Architecture
+## Model Architecture
 
 The project utilizes **Transfer Learning** with pretrained CNN models.
 
@@ -111,7 +111,7 @@ Softmax Output Layer
 
 ------------------------------------------------------------------------
 
-## 📈 Training Process
+## Training Process
 
 -   Loss Function: Categorical Crossentropy
 -   Optimizer: Adam
@@ -122,7 +122,7 @@ Softmax Output Layer
 
 ------------------------------------------------------------------------
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 -   Accuracy
 -   Precision
@@ -133,7 +133,7 @@ Softmax Output Layer
 
 ------------------------------------------------------------------------
 
-## 📷 Sample Workflow
+## Sample Workflow
 
 ``` text
 Input Image
@@ -157,7 +157,7 @@ Predicted Defect Class
 
 ------------------------------------------------------------------------
 
-## 📁 Project Structure
+## Project Structure
 
 ``` text
 Industrial-Surface-Defect-Detection/
@@ -174,7 +174,7 @@ Industrial-Surface-Defect-Detection/
 
 ------------------------------------------------------------------------
 
-## 🚀 Installation
+## Installation
 
 ``` bash
 git clone https://github.com/your-username/Industrial-Surface-Defect-Detection.git
@@ -184,7 +184,7 @@ pip install -r requirements.txt
 
 ------------------------------------------------------------------------
 
-## ▶️ Running the Project
+## Running the Project
 
 Launch Jupyter Notebook:
 
@@ -196,7 +196,7 @@ or open the notebook in Google Colab or Kaggle and run all cells.
 
 ------------------------------------------------------------------------
 
-## 📊 Results
+## Results
 
 The trained model successfully identifies industrial surface defects
 with high classification performance.
@@ -211,7 +211,7 @@ Outputs include:
 
 ------------------------------------------------------------------------
 
-## 🌟 Applications
+## Applications
 
 -   Steel Surface Inspection
 -   Manufacturing Quality Control
@@ -223,7 +223,7 @@ Outputs include:
 
 ------------------------------------------------------------------------
 
-## 🔮 Future Improvements
+## Future Improvements
 
 -   Real-time defect detection using live camera feeds
 -   Deployment using Flask or FastAPI
@@ -233,36 +233,10 @@ Outputs include:
 
 ------------------------------------------------------------------------
 
-## 👨‍💻 Authors
+## Authors
 
   Roll Number   Name
   ------------- ---------------
   240108        Rahul Amgoth
   230842        Raju Ramavath
   240411        Akshay Guda
-
-------------------------------------------------------------------------
-
-## 📜 License
-
-This project is developed for academic and educational purposes.
-
-------------------------------------------------------------------------
-
-## ⭐ Acknowledgements
-
--   Kaggle
--   TensorFlow & Keras
--   OpenCV
--   Google Colab
--   IIT Kanpur
-
-------------------------------------------------------------------------
-
-## 📬 Contact
-
-For suggestions or collaborations, feel free to open an issue or submit
-a pull request.
-
-If you found this project useful, don't forget to ⭐ star the
-repository!
