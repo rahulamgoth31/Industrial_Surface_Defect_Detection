@@ -37,21 +37,6 @@ For pushing accuracy toward 98%+:
 
 ---
 
-## 3. Your dataset, as verified
-
-Re-confirmed byte-for-byte identical to the version validated previously. Structure:
-
-```
-industrial_defect_dataset/
-├── train/  (2,400 images per class: crack, hole, normal, rust, scratch)
-└── val/    (600 images per class: crack, hole, normal, rust, scratch)
-```
-
-All 15,000 images: 100% PNG, 256×256, single-channel grayscale, **0 corrupted files, 0
-duplicates, 0 train/val leakage**, perfectly balanced.
-
----
-
 ## 4. Approach
 
 **Transfer learning** with an ImageNet-pretrained CNN backbone (default: **EfficientNet-B0**;
