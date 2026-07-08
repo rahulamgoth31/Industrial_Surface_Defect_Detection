@@ -5,29 +5,6 @@ scratch**, or **normal** (no defect) — from grayscale surface images. Built as
 transfer-learning pipeline for a Kaggle GPU notebook, tuned specifically to push accuracy
 as high as this dataset allows.
 
----
-
-## 1. What's in this delivery
-
-| File | Description |
-|---|---|
-| `industrial_surface_defect_detection.ipynb` | The full Kaggle notebook — run top to bottom. |
-| `README.md` | This file. |
-| `validation_evidence/` | Real outputs from validating your dataset and two baseline models directly (see §5). |
-
----
-
-## 2. What changed since the last version
-
-You hit two real errors running the previous notebook on Kaggle. Both are now handled
-directly in the notebook, plus the training recipe was pushed harder for accuracy:
-
-| Issue | What's new |
-|---|---|
-| PyTorch failed to import (`torch.fx` circular-import `AttributeError`) | This is a broken-build issue in the Kaggle environment itself, not the notebook — it happens inside PyTorch's own package init, before any of the notebook's code runs. Cell 1 now wraps the import so if it recurs, you get an immediate, clear fix (restart session; if it persists, `pip install -U torch`) instead of a bare traceback. Also documented up front in the intro cell. |
-| No internet → pretrained-weight download crashed with `URLError` | Cell 1 now checks connectivity upfront and warns clearly. More importantly, the model-building step (§6 in the notebook) now **catches the download failure and falls back to random-initialized weights** instead of crashing — training completes either way, though accuracy will be noticeably lower without internet. |
-| (new, pre-empted) CUDA out-of-memory | The training loop now detects OOM errors specifically and tells you to lower `BATCH_SIZE`, rather than a generic crash. |
-
 For pushing accuracy toward 98%+:
 
 - **Native 256×256 resolution** instead of resizing down to 224 — preserves fine detail in thin cracks/scratches (the backbone is fully convolutional with adaptive pooling, so this works with no architecture changes).
@@ -37,7 +14,7 @@ For pushing accuracy toward 98%+:
 
 ---
 
-## 4. Approach
+## 1. Approach
 
 **Transfer learning** with an ImageNet-pretrained CNN backbone (default: **EfficientNet-B0**;
 `resnet50`/`resnet18` selectable via one config line), fine-tuned in two phases:
@@ -53,7 +30,7 @@ and TTA at final evaluation and inference.
 
 ---
 
-## 5. What was actually validated, and what wasn't (read this)
+## 2. What was actually validated
 
 This build sandbox has **no GPU, no internet access, and no PyTorch/TensorFlow
 installed** — so I still cannot execute the deep learning training itself here. Rather
@@ -93,42 +70,9 @@ ImageNet accuracy backbone, same interface) and re-running phase 2.
 
 <div align="center">
 
-| Sample images per class (real data) |
-|---|
-| ![samples](validation_evidence/sample_grid.png) |
-
-| Class distribution |
-|---|
-| ![dist](validation_evidence/class_distribution.png) |
-
-| Baseline 1: Linear SVM (82.47%) | Baseline 2: MLP (94.97%) |
-|---|---|
-| ![cm1](validation_evidence/baseline_confusion_matrix.png) | ![cm2](validation_evidence/mlp_confusion_matrix.png) |
-
-</div>
-
 ---
 
-## 6. How to run this on Kaggle
-
-1. **kaggle.com → Create → New Dataset**, upload `industrial_defect_dataset.zip`.
-2. **kaggle.com → Create → New Notebook** → **File → Import Notebook** → upload
-   `industrial_surface_defect_detection.ipynb`.
-3. **Add Input** (right sidebar) → attach the dataset from step 1.
-4. **Settings** → **Accelerator** → **GPU T4 x2** or **P100**.
-5. **Settings** → **Internet** → toggle **ON** (needed once, to download pretrained
-   weights — cell 1 checks and warns you if this is off).
-6. **Run All.**
-
-If you toggled Internet on mid-session, restart the session first — it doesn't apply
-retroactively to an already-running kernel.
-
-**Expected runtime**: roughly 30–60 minutes on a T4/P100 given the longer schedule (early
-stopping usually cuts this shorter once validation accuracy plateaus).
-
----
-
-## 7. Configuration reference
+## 3. Configuration reference
 
 | Setting | Default | Notes |
 |---|---|---|
@@ -142,26 +86,7 @@ stopping usually cuts this shorter once validation accuracy plateaus).
 
 ---
 
-## 8. Troubleshooting
-
-- **`AttributeError` on `import torch` mentioning `torch.fx` / "circular import"**: broken
-  PyTorch build in the current session, not this notebook (fails before any notebook code
-  runs). Restart the session/Factory Reset; if it recurs, run `!pip install -U torch
-  --quiet` in a new cell, restart again.
-- **`URLError` / `gaierror: Temporary failure in name resolution`**: no internet access.
-  Settings → Internet → ON, then restart the session. The notebook now catches this and
-  continues with random-initialized weights rather than crashing, but accuracy will be
-  much lower — this is a fallback, not the intended path.
-- **`CUDA out of memory`**: the notebook will tell you this explicitly now. Lower
-  `BATCH_SIZE` to 16 (or 8), or switch `ARCH` to `resnet18`.
-- **"No GPU detected" warning**: Settings → Accelerator → turn on a GPU.
-- **`FileNotFoundError` about `train`/`val` folders**: the auto-detector prints the
-  contents of `/kaggle/input` when it can't find your data — copy the correct path into
-  `MANUAL_DATA_DIR` in the config cell.
-
----
-
-## 9. Possible extensions
+## 4. Possible extensions
 
 - Switch `ARCH` to `"resnet50"` and compare against the EfficientNet-B0 default.
 - Train both and ensemble (average softmax outputs) for a further accuracy bump.
