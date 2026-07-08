@@ -184,3 +184,16 @@ stopping usually cuts this shorter once validation accuracy plateaus).
   trust with a human inspector reviewing the model's calls.
 - If you later get defect *location* labels, the same backbone can be repurposed for
   detection (Faster R-CNN) or segmentation (U-Net) instead of whole-image classification.
+
+
+## 👨‍💻 Authors
+
+| Roll Number | Name |
+|-------------|----------------|
+| 240108 | Rahul Amgoth |
+| 230842 | Raju Ramavath |
+| 240411 | Akshay Guda |
+
+**Institute:** Indian Institute of Technology Kanpur (IIT Kanpur)
+
+---
