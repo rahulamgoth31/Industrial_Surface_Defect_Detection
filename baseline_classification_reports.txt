@@ -1,0 +1,38 @@
+SANDBOX VALIDATION BASELINES
+Both trained and evaluated directly on your full, real dataset in this build
+sandbox (no GPU/PyTorch available here - see README for context)
+========================================================================
+
+BASELINE 1: HOG features + Linear SGD-SVM (scikit-learn)
+------------------------------------------------------------------------
+Validation Accuracy: 82.47%
+
+              precision    recall  f1-score   support
+
+       crack     0.9389    0.7167    0.8129       600
+        hole     0.6298    0.9300    0.7510       600
+      normal     0.8862    0.8050    0.8437       600
+        rust     0.9340    0.8017    0.8628       600
+     scratch     0.8758    0.8700    0.8729       600
+
+    accuracy                         0.8247      3000
+   macro avg     0.8529    0.8247    0.8286      3000
+weighted avg     0.8529    0.8247    0.8286      3000
+
+
+BASELINE 2 (stronger): HOG features + MLP neural network (scikit-learn)
+------------------------------------------------------------------------
+Validation Accuracy: 94.97%
+
+              precision    recall  f1-score   support
+
+       crack     0.9288    0.9567    0.9425       600
+        hole     0.9321    0.9383    0.9352       600
+      normal     0.9519    0.9900    0.9706       600
+        rust     0.9588    0.9317    0.9451       600
+     scratch     0.9790    0.9317    0.9547       600
+
+    accuracy                         0.9497      3000
+   macro avg     0.9501    0.9497    0.9496      3000
+weighted avg     0.9501    0.9497    0.9496      3000
+
