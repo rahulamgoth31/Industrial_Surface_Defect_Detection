@@ -186,7 +186,7 @@ stopping usually cuts this shorter once validation accuracy plateaus).
   detection (Faster R-CNN) or segmentation (U-Net) instead of whole-image classification.
 
 
-## 👨‍💻 Authors
+## Authors
 
 | Roll Number | Name |
 |-------------|----------------|
